@@ -8,6 +8,7 @@
     <script src="js/player.js"></script>
     <script src="js/aframe-physics-system.min.js"></script>
     <script src="js/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
   </head>
   <body class="a-body">
     <a-scene debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr="">
@@ -74,6 +75,13 @@
 
       <!-- Sky -->
       <a-sky color="#3c3c3c"></a-sky>
+
+      <!-- Shop -->
+      <a-entity position="-3.122 0 7.714" rotation="0 180 0" scale="0.1 0.1 0.1" id="shop" static-body obj-model="mtl:resources/shop.mtl;obj:resources/shop.obj" material="">
+      </a-entity>
+
+      <!-- Shop man head -->
+      <a-entity position="-3.114 0.051 7.789" scale="0.1 0.1 0.1" material="shader:flat" obj-model="mtl:resources/shop_head.mtl;obj:resources/shop_head.obj" look-at="#player"></a-entity>
 
       <!-- Enemies -->
       <a-entity sound="src:#fx_punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" id="Ghost01" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:https://ucarecdn.com/f6bf9fe3-82b4-43ba-b5b6-a7e308b64c77/">
