@@ -5,6 +5,19 @@ AFRAME.registerComponent('enemy', {
     id: {type: 'int', default: 0}
   },
 
+  init: function() {
+    var el = this.el;
+
+    el.addEventListener('collide', function () {
+      el.components.enemy.reduceHealth(numAleatorio(1,5));
+      el.components.enemy.updateHealthText();
+    });
+
+    function numAleatorio(min, max) {
+      return Math.round(Math.random() * (max - min) + min);
+    }
+  },
+
   tick: function () {
     var entity = this.el;
     if (this.data.health <= 0) {
