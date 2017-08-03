@@ -39,6 +39,7 @@
       </a-box>
       <a-box id="wall_8" color="grey" width="7" height="5" depth="1" position="-7.263 2.5 6.966" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body rotation="0 90 0">
       </a-box>
+      <!-- END WALLS -->
 
       <!-- Floor. -->
       <a-entity id="floor" static-body geometry="depth:100;height:0.2;width:100;" material="repeat:50 20;color:#fafafa;metalness:0.2;roughness:0.1;src:https://ucarecdn.com/8a2780f7-e076-4f8c-bd1d-40ae172508a9/"></a-entity>
@@ -53,10 +54,22 @@
         <a-entity sound="src:#bg_music"></a-entity>
 
       	<!-- HP Interface -->
-      	<a-entity position="-0.995 0.662 -1.633" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.1 0.1 0.1"></a-entity>
+      	<a-entity position="-0.553 -0.328 -0.725" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
 
       	<!-- Cursor -->
       	<a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
+
+        <!-- Player Sword-->
+        <a-entity id="player-sword" position="0.416 -0.957 -0.463" obj-model="mtl:resources/player_sword.mtl;obj:resources/player_sword.obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5" material="">
+          
+          <!-- Sword Hit Rotation Animation -->
+          <a-animation id="p-sword-rotation" attribute="rotation" to="0 90 -80" direction="alternate" repeat="1" begin="player-attack" easing="linear" dur="200"></a-animation>
+
+        </a-entity>
+
+        <!-- Player Shield -->
+        <a-entity position="-0.705 -1.703 -0.411" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:resources/player_shield.mtl;obj:resources/player_shield.obj" rotation="0 -90 0" material=""></a-entity>
+
       </a-entity>
 
       <!-- Sky -->

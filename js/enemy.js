@@ -9,6 +9,7 @@ AFRAME.registerComponent('enemy', {
     var el = this.el;
 
     el.addEventListener('collide', function () {
+      document.querySelector('#player-sword').emit('player-attack');
       el.components.enemy.reduceHealth(numAleatorio(1,5));
       el.components.enemy.updateHealthText();
     });
