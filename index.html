@@ -45,11 +45,37 @@
       <!-- Floor. -->
       <a-entity id="floor" static-body geometry="depth:100;height:0.2;width:100;" material="repeat:50 20;color:#fafafa;metalness:0.2;roughness:0.1;src:https://ucarecdn.com/8a2780f7-e076-4f8c-bd1d-40ae172508a9/"></a-entity>
 
-      <!-- Lights. -->
-      <a-entity id="pointLight" light="angle:0;intensity:1.4;type:hemisphere" position="0 19.399 2.231"></a-entity>
+      <!-- World Sun -->
+      <a-entity light="color:#CCC;intensity:0.2;type:ambient" position="0 11.345 0"></a-entity>
+
+      <!-- Torches -->
+      <a-entity id="torch_1" castShadow="true" position="-6.562 2.992 7.245" static-body geometry="depth:0.3;height:0.3;width:0.3">
+        <a-entity light="angle:0;decay:0;intensity:0.3;type:point" position="0 -0.028 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="torch_2" castShadow="true" position="6.893 2.992 7.245" static-body geometry="depth:0.3;height:0.3;width:0.3">
+        <a-entity light="angle:0;decay:0;intensity:0.3;type:point" position="0 -0.028 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="torch_3" castShadow="true" position="-0.299 2.992 2.442" static-body geometry="depth:0.3;height:0.3;width:0.3">
+        <a-entity light="angle:0;decay:0;intensity:0.3;type:point" position="0 -0.028 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="torch_4" castShadow="true" position="-0.299 2.992 -6.12" static-body geometry="depth:0.3;height:0.3;width:0.3">
+        <a-entity light="angle:0;decay:0;intensity:0.3;type:point" position="0 -0.028 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="torch_5" castShadow="true" position="3.108 2.992 2.442" static-body geometry="depth:0.3;height:0.3;width:0.3">
+        <a-entity light="angle:0;decay:0;intensity:0.3;type:point" position="0 -0.028 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="torch_6" castShadow="true" position="3.072 2.992 -6.12" static-body geometry="depth:0.3;height:0.3;width:0.3">
+        <a-entity light="angle:0;decay:0;intensity:0.3;type:point" position="0 -0.028 0"></a-entity>
+      </a-entity>
+      <!-- END TORCHES -->
 
       <!-- Camera. -->
-      <a-entity sound="src:#bg_music; autoplay:true; loop:true; volume:0.05" camera id="player" player="health: 200" userHeight="1.6" universal-controls kinematic-body="radius:0.5" position="1.464 1.572 2.571">
+      <a-entity sound="src:#bg_music; autoplay:true; loop:true; volume:0.05" camera id="player" player="health: 200" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
 
       	<!-- BG Music -->
         <a-entity sound="src:#bg_music"></a-entity>
@@ -77,7 +103,10 @@
       <a-sky color="#3c3c3c"></a-sky>
 
       <!-- Shop -->
-      <a-entity position="-3.122 0 7.714" rotation="0 180 0" scale="0.1 0.1 0.1" id="shop" static-body obj-model="mtl:resources/shop.mtl;obj:resources/shop.obj" material="">
+      <a-entity position="-3.122 0 7.714" rotation="0 180 0" scale="0.1 0.1 0.1" id="shop" obj-model="mtl:resources/shop.mtl;obj:resources/shop.obj" material="">
+
+        <!-- Shop's Bounding Box -->
+        <a-entity position="4.546 13.658 -2.34" static-body="sphereRadius:NaN" geometry="depth:32;height:25;width:63;heigh:5" visible="false"></a-entity>
       </a-entity>
 
       <!-- Shop man head -->
@@ -107,8 +136,3 @@
 	    </a-entity>
 	  </a-entity>
     </a-scene>
-
-    
-
-    <!-- Github Corner. -->
-    <a style="display: none;" href="blob:http://localhost:3333/4af09b7e-7741-411c-a7bd-6cde2058da2f" download="localhost-3333-voxel-dungeon"></a><textarea readonly="" style="font-size: 12pt; border: 0px; padding: 0px; margin: 0px; position: absolute; left: -9999px; top: 0px;"></textarea></body></html>
