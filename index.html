@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
   </head>
   <body class="a-body">
-    <a-scene debug="" physics="debug: true" sound="src:#bg_music; autoplay:true; loop:true; volume:0.05" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr="">
+    <a-scene debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr="">
       <a-assets>
         <a-asset-item id="player-sword-obj" src="resources/player_sword.obj" preload="auto"></a-asset-item>
         <a-asset-item id="player-sword-mtl" src="resources/player_sword.mtl" preload="auto"></a-asset-item>
@@ -86,7 +86,7 @@
       <!-- END TORCHES -->
 
       <!-- Camera. -->
-      <a-entity camera id="player" player="health: 200" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
+      <a-entity camera id="player" player="health: 200" sound="src:#bg_music; autoplay:true; loop:true; volume:0.05" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
 
       	<!-- HP Interface -->
       	<a-entity position="-0.553 -0.328 -0.725" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
