@@ -42,11 +42,11 @@
 
       <!-- Walls -->
       <a-box id="wall_1" color="grey" width="15" height="5" depth="1" position="-0.215 2.5 10.025" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body></a-box>
-      <a-box id="wall_2" color="grey" width="15" height="5" depth="1" position="-0.215 2.5 -10.794" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body></a-box>
+      <a-box id="wall_2" color="grey" width="15" height="5" depth="1" position="-7.958 2.5 -9.76" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body></a-box>
       <a-box id="wall_3" color="grey" width="15" height="5" depth="1" position="3.731 2.5 -2.734" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" rotation="0 90 0" static-body></a-box>
       <a-box id="wall_4" color="grey" width="15" height="5" depth="1" position="-0.949 2.5 -2.761" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" rotation="0 90 0" static-body></a-box>
       <a-box id="wall_5" color="grey" width="10" height="5" depth="1" position="-5.465 2.5 4.268" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body></a-box>
-      <a-box id="wall_6" color="grey" width="10" height="5" depth="1" position="8.246 2.5 4.268" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body></a-box>
+      <a-box id="wall_6" color="grey" width="10" height="5" depth="1" position="5.234 2.5 4.268" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body geometry="width:4"></a-box>
       <a-box id="wall_7" color="grey" width="7" height="5" depth="1" position="7.545 2.5 6.966" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body rotation="0 90 0">
       </a-box>
       <a-box id="wall_8" color="grey" width="7" height="5" depth="1" position="-7.263 2.5 6.966" material="src:https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" static-body rotation="0 90 0">
@@ -117,7 +117,9 @@
       </a-entity>
 
       <!-- Shop man head -->
-      <a-entity position="-3.114 0.051 7.789" scale="0.1 0.1 0.1" obj-model="mtl:#shop-head-mtl;obj:#shop-head-obj" look-at="#player"></a-entity>
+      <a-entity position="-3.687 1.811 7.573" look-at="#player">
+        <a-entity position="-0.55 -1.854 -0.123" rotation="0 0 0" scale="0.1 0.1 0.1" obj-model="mtl:#shop-head-mtl;obj:#shop-head-obj"></a-entity>
+      </a-entity>
 
       <!-- Enemies -->
       <a-entity sound="src:#fx_punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" id="Ghost01" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:https://ucarecdn.com/f6bf9fe3-82b4-43ba-b5b6-a7e308b64c77/">
