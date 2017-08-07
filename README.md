@@ -1,5 +1,5 @@
-#<b>A-Frame Videogame Tutorial</b>  
-This example aims to show some features of A-Frame. Also used a tutorial in the webpage Adictos al Trabajo.
+#<b>Voxel Dungeon VR</b>  
+Using A-Frame to make a dungeon-like game.
 
 #<b>Music</b>
 The tracks and their authors can be found in the following links:   
