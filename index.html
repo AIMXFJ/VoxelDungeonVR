@@ -30,7 +30,7 @@
       	<a-mixin id="torch" castShadow="true" static-body geometry="depth:0.3;height:0.3;width:0.3"/>
       	<a-mixin id="torch_light" light="angle:0;decay:0;intensity:2;type:point;color:#ff9328;distance:10;decay:1"/>
       	<a-mixin id="wall" shadow="cast: true" color="grey" material="src:#wall_img;roughness:1;metalness:0.3" static-body/>
-      	<a-mixin id="tp_sphere" sound="src:#fx_teleport; poolSize:5; volume:0.2" static-movement geometry="primitive:sphere;radius:0.2" material="color:blue;roughness:1"/>
+      	<a-mixin id="tp_sphere" sound="src:#fx_teleport; poolSize:5; volume:0.2" static-movement geometry="primitive:sphere;radius:0.3" material="color:blue;roughness:1"/>
       </a-assets>
 
       <!-- BG Music -->
@@ -42,29 +42,47 @@
       <!-- Teleport System Spheres -->
       <a-entity id="blueTPSphere-1" mixin="tp_sphere" position="1.526 2.884 -2.804"></a-entity>
       <a-entity id="blueTPSphere-2" mixin="tp_sphere" position="1.464 2.884 7.124"></a-entity>
-      <a-entity id="blueTPSphere-3" mixin="tp_sphere" position="-5.077 2.884 7.124"></a-entity>
-      <a-entity id="blueTPSphere-4" mixin="tp_sphere" position="5.395 2.884 7.124"></a-entity>
-      <a-entity id="blueTPSphere-5" mixin="tp_sphere" position="1.464 2.884 2.571"></a-entity>
+      <a-entity id="blueTPSphere-3" mixin="tp_sphere" position="-3.437 2.884 5.284"></a-entity>
+      <a-entity id="blueTPSphere-4" mixin="tp_sphere" position="21.004 2.884 5.341"></a-entity>
+      <a-entity id="blueTPSphere-5" mixin="tp_sphere" position="0.401 2.884 22.737"></a-entity>
       <a-entity id="blueTPSphere-6" mixin="tp_sphere" position="1.415 2.884 -12.288"></a-entity>
       <a-entity id="blueTPSphere-7" mixin="tp_sphere" position="-8.264 2.884 -12.288"></a-entity>
       <a-entity id="blueTPSphere-8" mixin="tp_sphere" position="10.55 2.884 -12.288"></a-entity>
       <a-entity id="blueTPSphere-9" mixin="tp_sphere" position="1.415 2.884 -22.316"></a-entity>
+      <a-entity id="blueTPSphere-10" mixin="tp_sphere" position="20.92 2.884 -12.217"></a-entity>
+      <a-entity id="blueTPSphere-11" mixin="tp_sphere" position="21.027 2.884 22.455"></a-entity>
+      <a-entity id="blueTPSphere-12" mixin="tp_sphere" position="1.473 2.884 1.942"></a-entity>
+      <a-entity id="blueTPSphere-13" mixin="tp_sphere" position="-18.063 2.884 -12.294"></a-entity>
+      <a-entity id="blueTPSphere-14" mixin="tp_sphere" position="-18.02 2.884 22.737"></a-entity>
+      <a-entity id="blueTPSphere-15" mixin="tp_sphere" position="-18.02 2.884 5.341"></a-entity>
 
       <!-- Walls -->
-      <a-box id="wall_1" mixin="wall" width="15" height="5" depth="1" position="-0.215 2.5 10.025"></a-box>
-      <a-box id="wall_2" mixin="wall" width="15" height="5" depth="1" position="-7.958 2.5 -9.76"></a-box>
-      <a-box id="wall_3" mixin="wall" width="15" height="5" depth="1" position="3.731 2.5 -2.734" rotation="0 90 0">
+      <a-box id="wall-1" mixin="wall" width="15" height="5" depth="1" position="-0.215 2.5 10.025"></a-box>
+      <a-box id="wall-2" mixin="wall" width="15" height="5" depth="1" position="-7.958 2.5 -9.76"></a-box>
+      <a-box id="wall-3" mixin="wall" width="15" height="5" depth="1" position="3.731 2.5 -7.673" rotation="0 90 0" geometry="width:5">
       </a-box>
-      <a-box id="wall_4" mixin="wall" width="15" height="5" depth="1" position="-0.949 2.5 -2.758" rotation="0 90 0"></a-box>
-      <a-box id="wall_5" mixin="wall" width="7" height="5" depth="1" position="-3.967 2.5 4.268"></a-box>
-      <a-box id="wall_6" mixin="wall" width="4" height="5" depth="1" position="5.234 2.5 4.268"></a-box>
-      <a-box id="wall_7" mixin="wall" width="7" height="5" depth="1" position="7.545 2.5 6.966" rotation="0 90 0"></a-box>
-      <a-box id="wall_8" mixin="wall" width="7" height="5" depth="1" position="-7.263 2.5 6.966" rotation="0 90 0"></a-box>
-      <a-box id="wall_9" mixin="wall" width="15" height="5" depth="1" position="10.757 2.5 -9.76"></a-box>
-      <a-box id="wall_10" mixin="wall" width="15" height="5" depth="1" position="-7.95 2.5 -14.766"></a-box>
-      <a-box id="wall_11" mixin="wall" width="15" height="5" depth="1" position="10.75 2.5 -14.766"></a-box>
-      <a-box id="wall_12" mixin="wall" width="15" height="5" depth="1" position="-0.949 2.5 -21.78" rotation="0 90 0"></a-box>
-      <a-box id="wall_13" mixin="wall" width="15" height="5" depth="1" position="3.731 2.5 -21.771" rotation="0 90 0"></a-box>
+      </a-box>
+      <a-box id="wall-4" mixin="wall" width="15" height="5" depth="1" position="-0.949 2.5 -7.671" rotation="0 90 0" geometry="width:5"></a-box>
+      <a-box id="wall-5" mixin="wall" width="7" height="5" depth="1" position="-3.967 2.5 -5.568"></a-box>
+      <a-box id="wall-6" mixin="wall" width="4" height="5" depth="1" position="5.234 2.5 -5.56"></a-box>
+      <a-box id="wall-7" mixin="wall" width="7" height="5" depth="1" position="7.545 2.5 2.334" rotation="0 90 0" geometry="width:16"></a-box>
+      <a-box id="wall-8" mixin="wall" width="7" height="5" depth="1" position="-7.263 2.5 1.945" rotation="0 90 0" geometry="width:16"></a-box>
+      <a-box id="wall-9" mixin="wall" width="15" height="5" depth="1" position="10.757 2.5 -9.76"></a-box>
+      <a-box id="wall-10" mixin="wall" width="15" height="5" depth="1" position="-11.465 2.5 -14.766" geometry="width:22"></a-box>
+      <a-box id="wall-11" mixin="wall" width="15" height="5" depth="1" position="14.256 2.5 -14.766" geometry="width:22"></a-box>
+      <a-box id="wall-12" mixin="wall" width="15" height="5" depth="1" position="-0.949 2.5 -21.78" rotation="0 90 0"></a-box>
+      <a-box id="wall-13" mixin="wall" width="15" height="5" depth="1" position="3.731 2.5 -21.771" rotation="0 90 0"></a-box>
+      <a-box id="wall-14" mixin="wall" width="15" height="5" depth="1" position="17.774 2.5 -2.704" rotation="0 90 0"></a-box>
+      <a-box id="wall-15" mixin="wall" width="15" height="5" depth="1" position="17.774 2.5 12.273" rotation="0 90 0"></a-box>
+      <a-box id="wall-16" mixin="wall" width="15" height="5" depth="1" position="1.307 2.5 19.273" geometry="width:33.5"></a-box>
+      <a-box id="wall-17" mixin="wall" width="15" height="5" depth="1" position="-14.964 2.5 -2.746" rotation="0 90 0"></a-box>
+      <a-box id="wall-18" mixin="wall" width="15" height="5" depth="1" position="-14.964 2.5 12.196" rotation="0 90 0"></a-box>
+      <a-box id="wall-19" mixin="wall" width="15" height="5" depth="1" position="-35.967 2.5 19.308" geometry="width:30"></a-box>
+      <a-box id="wall-20" mixin="wall" width="15" height="5" depth="1" position="-35.999 2.5 -9.72" geometry="width:30"></a-box>
+      <a-box id="wall-21" mixin="wall" width="15" height="5" depth="1" position="-49.195 2.5 5.187" rotation="0 90 0" geometry="width:29"></a-box>
+      <a-box id="wall-22" mixin="wall" width="15" height="5" depth="1" position="-21.464 2.5 11.458" rotation="0 90 0" geometry="width:30"></a-box>
+      <a-box id="wall-23" mixin="wall" width="15" height="5" depth="1" position="1.307 2.5 25.688" geometry="width:46.5"></a-box>
+      <a-box id="wall-24" mixin="wall" width="15" height="5" depth="1" position="24.156 2.5 7.806" rotation="0 90 0" geometry="width:36"></a-box>
       <!-- END WALLS -->
 
       <!-- Floor. -->
@@ -74,19 +92,34 @@
       <a-entity light="color:#CCC;intensity:0.6;type:ambient" position="0 11.345 0"></a-entity>
 
       <!-- Torches -->
-      <a-entity id="torch_1" mixin="torch" position="1.392 3.567 7.135">
+      <a-entity id="torch-1" mixin="torch" position="-0.334 3.567 2.083">
         <a-entity mixin="torch_light"></a-entity>
       </a-entity>
-      <a-entity id="torch_2" mixin="torch" position="1.392 3.567 -12.279">
+      <a-entity id="torch-2" mixin="torch" position="1.392 3.567 -12.279">
         <a-entity mixin="torch_light"></a-entity>
       </a-entity>
-      <a-entity id="torch_3" mixin="torch" position="-13.873 3.567 -12.279">
+      <a-entity id="torch-3" mixin="torch" position="-13.873 3.567 -12.279">
         <a-entity mixin="torch_light"></a-entity>
       </a-entity>
-      <a-entity id="torch_4" mixin="torch" position="16.023 3.567 -12.279">
+      <a-entity id="torch-4" mixin="torch" position="16.023 3.567 -12.279">
         <a-entity mixin="torch_light"></a-entity>
       </a-entity>
-      <a-entity id="torch_5" mixin="torch" position="1.392 3.567 -27.163">
+      <a-entity id="torch-5" mixin="torch" position="1.392 3.567 -27.163">
+        <a-entity mixin="torch_light"></a-entity>
+      </a-entity>
+      <a-entity id="torch-6" mixin="torch" position="20.961 3.567 5.388">
+        <a-entity mixin="torch_light"></a-entity>
+      </a-entity>
+      <a-entity id="torch-7" mixin="torch" position="20.961 3.567 22.432">
+        <a-entity mixin="torch_light"></a-entity>
+      </a-entity>
+      <a-entity id="torch-8" mixin="torch" position="0.385 3.567 22.432">
+        <a-entity mixin="torch_light"></a-entity>
+      </a-entity>
+      <a-entity id="torch-9" mixin="torch" position="-17.979 3.567 22.432">
+        <a-entity mixin="torch_light"></a-entity>
+      </a-entity>
+      <a-entity id="torch-10" mixin="torch" position="-17.979 3.567 5.27">
         <a-entity mixin="torch_light"></a-entity>
       </a-entity>
       <!-- END TORCHES -->
