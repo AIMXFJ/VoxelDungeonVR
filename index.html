@@ -9,9 +9,16 @@
     <script src="js/aframe-physics-system.min.js"></script>
     <script src="js/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="js/random-position.js"></script>
+    <script src="js/aframe-firebase-component.min.js"></script>
   </head>
   <body class="a-body">
-    <a-scene debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr="">
+    <a-scene debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr=""
+      firebase="apiKey: AIzaSyBvO8Woss2L0VtEq8DAa9rWTA3UC754BHg;
+        authDomain: voxeldungeonvr.firebaseapp.com;
+        databaseURL: https://voxeldungeonvr.firebaseio.com;
+        storageBucket: voxeldungeonvr.appspot.com">
       <a-assets>
         <a-asset-item id="player-sword-obj" src="resources/player_sword.obj" preload="auto"></a-asset-item>
         <a-asset-item id="player-sword-mtl" src="resources/player_sword.mtl" preload="auto"></a-asset-item>
@@ -21,40 +28,44 @@
         <a-asset-item id="shop-head-mtl" src="resources/shop_head.mtl" preload="auto"></a-asset-item>
         <a-asset-item id="shop-head-obj" src="resources/shop_head.obj" preload="auto"></a-asset-item>
         <a-asset-item id="shop-mtl" src="resources/shop.mtl" preload="auto"></a-asset-item>
-      	<img id="ghost_img" src="https://ucarecdn.com/f6bf9fe3-82b4-43ba-b5b6-a7e308b64c77/" crossorigin="anonymous">
-      	<img id="wall_img" src="https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" crossorigin="anonymous">
-      	<audio id="bg_music" src="resources/bg_music.mp3" preload="auto"></audio>
-      	<audio id="fx_punch" src="resources/fx_punch.mp3" preload="auto"></audio>
-      	<audio id="fx_teleport" src="resources/fx_teleport.mp3" preload="auto"></audio>
+        <a-asset-item id="lamp-mtl" src="resources/lamp.mtl" preload="auto"></a-asset-item>
+        <a-asset-item id="lamp-obj" src="resources/lamp.obj" preload="auto"></a-asset-item>
+      	<img id="ghost-img" src="https://ucarecdn.com/f6bf9fe3-82b4-43ba-b5b6-a7e308b64c77/" crossorigin="anonymous">
+      	<img id="wall-img" src="https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" crossorigin="anonymous">
+        <img id="lamp-img" src="resources/lamp.png" crossorigin="anonymous">
+      	<audio id="bg-music" src="resources/bg_music.mp3" preload="auto"></audio>
+      	<audio id="fx-punch" src="resources/fx_punch.mp3" preload="auto"></audio>
+      	<audio id="fx-teleport" src="resources/fx_teleport.mp3" preload="auto"></audio>
 
-      	<a-mixin id="torch" castShadow="true" static-body geometry="depth:0.3;height:0.3;width:0.3"/>
-      	<a-mixin id="torch_light" light="angle:0;decay:0;intensity:2;type:point;color:#ff9328;distance:10;decay:1"/>
-      	<a-mixin id="wall" shadow="cast: true" color="grey" material="src:#wall_img;roughness:1;metalness:0.3" static-body/>
-      	<a-mixin id="tp_sphere" sound="src:#fx_teleport; poolSize:5; volume:0.2" static-movement geometry="primitive:sphere;radius:0.3" material="color:blue;roughness:1"/>
+      	<a-mixin id="torch" castShadow="true" static-body/>
+      	<a-mixin id="torch-light" light="angle:0;decay:0;intensity:2;type:point;color:#ff9328;distance:10;decay:1"/>
+      	<a-mixin id="wall" shadow="cast: true" color="grey" material="src:#wall-img;roughness:1;metalness:0.3" static-body/>
+      	<a-mixin id="tp-sphere" sound="src:#fx-teleport; poolSize:5; volume:0.2" static-movement geometry="primitive:sphere;radius:0.3" material="color:blue;roughness:1"/>
+        <a-mixin id="player-head-mixin" geometry="primitive:sphere;radius:0.2" material="color:red;roughness:1"></a-mixin>
       </a-assets>
 
       <!-- BG Music -->
-      <a-entity sound="src:#bg_music"></a-entity>
+      <a-entity sound="src:#bg-music"></a-entity>
 
       <!-- Teleport Sound -->
-      <a-entity sound="src:#fx_teleport"></a-entity>
+      <a-entity sound="src:#fx-teleport"></a-entity>
 
       <!-- Teleport System Spheres -->
-      <a-entity id="blueTPSphere-1" mixin="tp_sphere" position="1.526 2.884 -2.804"></a-entity>
-      <a-entity id="blueTPSphere-2" mixin="tp_sphere" position="1.464 2.884 7.124"></a-entity>
-      <a-entity id="blueTPSphere-3" mixin="tp_sphere" position="-3.437 2.884 5.284"></a-entity>
-      <a-entity id="blueTPSphere-4" mixin="tp_sphere" position="21.004 2.884 5.341"></a-entity>
-      <a-entity id="blueTPSphere-5" mixin="tp_sphere" position="0.401 2.884 22.737"></a-entity>
-      <a-entity id="blueTPSphere-6" mixin="tp_sphere" position="1.415 2.884 -12.288"></a-entity>
-      <a-entity id="blueTPSphere-7" mixin="tp_sphere" position="-8.264 2.884 -12.288"></a-entity>
-      <a-entity id="blueTPSphere-8" mixin="tp_sphere" position="10.55 2.884 -12.288"></a-entity>
-      <a-entity id="blueTPSphere-9" mixin="tp_sphere" position="1.415 2.884 -22.316"></a-entity>
-      <a-entity id="blueTPSphere-10" mixin="tp_sphere" position="20.92 2.884 -12.217"></a-entity>
-      <a-entity id="blueTPSphere-11" mixin="tp_sphere" position="21.027 2.884 22.455"></a-entity>
-      <a-entity id="blueTPSphere-12" mixin="tp_sphere" position="1.473 2.884 1.942"></a-entity>
-      <a-entity id="blueTPSphere-13" mixin="tp_sphere" position="-18.063 2.884 -12.294"></a-entity>
-      <a-entity id="blueTPSphere-14" mixin="tp_sphere" position="-18.02 2.884 22.737"></a-entity>
-      <a-entity id="blueTPSphere-15" mixin="tp_sphere" position="-18.02 2.884 5.341"></a-entity>
+      <a-entity id="blueTPSphere-1" mixin="tp-sphere" position="1.526 2.884 -2.804"></a-entity>
+      <a-entity id="blueTPSphere-2" mixin="tp-sphere" position="1.464 2.884 7.124"></a-entity>
+      <a-entity id="blueTPSphere-3" mixin="tp-sphere" position="-3.437 2.884 5.284"></a-entity>
+      <a-entity id="blueTPSphere-4" mixin="tp-sphere" position="21.004 2.884 5.341"></a-entity>
+      <a-entity id="blueTPSphere-5" mixin="tp-sphere" position="0.401 2.884 22.737"></a-entity>
+      <a-entity id="blueTPSphere-6" mixin="tp-sphere" position="1.415 2.884 -12.288"></a-entity>
+      <a-entity id="blueTPSphere-7" mixin="tp-sphere" position="-8.264 2.884 -12.288"></a-entity>
+      <a-entity id="blueTPSphere-8" mixin="tp-sphere" position="10.55 2.884 -12.288"></a-entity>
+      <a-entity id="blueTPSphere-9" mixin="tp-sphere" position="1.415 2.884 -22.316"></a-entity>
+      <a-entity id="blueTPSphere-10" mixin="tp-sphere" position="20.92 2.884 -12.217"></a-entity>
+      <a-entity id="blueTPSphere-11" mixin="tp-sphere" position="21.027 2.884 22.455"></a-entity>
+      <a-entity id="blueTPSphere-12" mixin="tp-sphere" position="1.473 2.884 1.942"></a-entity>
+      <a-entity id="blueTPSphere-13" mixin="tp-sphere" position="-18.063 2.884 -12.294"></a-entity>
+      <a-entity id="blueTPSphere-14" mixin="tp-sphere" position="-18.02 2.884 22.737"></a-entity>
+      <a-entity id="blueTPSphere-15" mixin="tp-sphere" position="-18.02 2.884 5.341"></a-entity>
 
       <!-- Walls -->
       <a-box id="wall-1" mixin="wall" width="15" height="5" depth="1" position="-0.215 2.5 10.025"></a-box>
@@ -88,62 +99,75 @@
       <!-- Floor. -->
       <a-entity id="floor" shadow="receive: true" static-body geometry="depth:100;height:0.2;width:100;" material="repeat:50 20;color:#fafafa;metalness:0.2;roughness:1;src:https://ucarecdn.com/8a2780f7-e076-4f8c-bd1d-40ae172508a9/"></a-entity>
 
+      <!-- Fountain -->
+      <a-entity position="-4.173 0.763 -1.856" rotation="90 0 0" ocean="width:5;depth:5;density:5;amplitude:0.5;amplitudeVariance:0;opacity:0.8"></a-entity>
+
       <!-- World Sun -->
       <a-entity light="color:#CCC;intensity:0.6;type:ambient" position="0 11.345 0"></a-entity>
 
       <!-- Torches -->
       <a-entity id="torch-1" mixin="torch" position="-0.334 3.567 2.083">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-2" mixin="torch" position="1.392 3.567 -12.279">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-3" mixin="torch" position="-13.873 3.567 -12.279">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-4" mixin="torch" position="16.023 3.567 -12.279">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-5" mixin="torch" position="1.392 3.567 -27.163">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-6" mixin="torch" position="20.961 3.567 5.388">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-7" mixin="torch" position="20.961 3.567 22.432">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-8" mixin="torch" position="0.385 3.567 22.432">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-9" mixin="torch" position="-17.979 3.567 22.432">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <a-entity id="torch-10" mixin="torch" position="-17.979 3.567 5.27">
-        <a-entity mixin="torch_light"></a-entity>
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
       <!-- END TORCHES -->
 
     <!-- Camera. -->
-    <a-entity camera id="player" player="health: 200" sound="src:#bg_music; autoplay:true; loop:true; volume:0.05" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
+    <a-entity camera id="player" firebase-broadcast="components: position, rotation" player="health: 200" sound="src:#bg-music; autoplay:true; loop:true; volume:0.05" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
 
-    	<a-entity id="player-head" geometry="primitive:sphere;radius:0.2" material="color:red;roughness:1"></a-entity>
+    	<a-entity id="player-head" firebase-broadcast="componentsOnce: mixin; components: position, rotation" position="0 0 0" mixin="player-head-mixin"></a-entity>
 
-      	<!-- HP Interface -->
-      	<a-entity position="-0.553 -0.328 -0.725" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
+      <!-- HP Interface -->
+      <a-entity position="-0.553 -0.328 -0.725" firebase-broadcast="components: position, rotation" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
 
     	<!-- Cursor -->
-     	<a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
+     	<a-entity cursor firebase-broadcast="components: position, rotation" position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
 
-        <!-- Player Sword-->
-      	<a-entity id="player-sword" position="0.416 -0.957 -0.463" shadow="cast: true" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5" material="">
+      <!-- Player Sword-->
+      <a-entity id="player-sword" firebase-broadcast="components: position, rotation, obj-model, scale" position="0.416 -0.957 -0.463" shadow="cast: true" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5">
           
-          	<!-- Sword Hit Rotation Animation -->
-        	<a-animation id="p-sword-rotation" attribute="rotation" to="0 90 -80" direction="alternate" repeat="1" begin="player-attack" easing="linear" dur="200"></a-animation>
-      	</a-entity>
+        <!-- Sword Hit Rotation Animation -->
+        <a-animation id="p-sword-rotation" attribute="rotation" to="0 90 -80" direction="alternate" repeat="1" begin="player-attack" easing="linear" dur="200"></a-animation>
+      </a-entity>
 
         <!-- Player Shield -->
-      <a-entity position="-0.705 -1.703 -0.411" shadow="cast: true" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0" material=""></a-entity>
+      <a-entity position="-0.705 -1.703 -0.411" firebase-broadcast="components: position, rotation, obj-model, scale" shadow="cast: true" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0"></a-entity>
 
     </a-entity>
 
@@ -151,7 +175,7 @@
       <a-sky color="#3c3c3c"></a-sky>
 
       <!-- Shop -->
-      <a-entity position="-3.122 0 7.714" rotation="0 180 0" scale="0.1 0.1 0.1" id="shop" obj-model="mtl:#shop-mtl;obj:#shop-obj" material="">
+      <a-entity position="-3.122 0 7.714" rotation="0 180 0" scale="0.1 0.1 0.1" id="shop" obj-model="mtl:#shop-mtl;obj:#shop-obj">
 
         <!-- Shop's Bounding Box -->
         <a-entity position="4.546 13.658 -2.34" static-body="sphereRadius:NaN" geometry="depth:32;height:25;width:63" visible="false"></a-entity>
@@ -160,17 +184,17 @@
       <!-- Shop man head -->
       <a-entity position="-3.687 1.811 7.573" look-at="#player">
         <a-entity position="-0.55 -1.854 -0.123" rotation="0 0 0" scale="0.1 0.1 0.1" obj-model="mtl:#shop-head-mtl;obj:#shop-head-obj"></a-entity>
-        <a-entity position="0.016 1.071 0.071" material="color:lightgrey;height:10;width:10;wireframeLinewidth:1" geometry="primitive:plane;height:0.25;width:1.6" text="align:center;color:#322342;tabSize:1;value:Do you need something?;wrapCount:30" id="inventory-6"></a-entity>
+        <a-entity position="0.016 1.071 0.071" geometry="primitive:plane;height:0.25;width:1.6" text="align:center;color:#322342;tabSize:1;value:Do you need something?;wrapCount:30" id="inventory-6"></a-entity>
       </a-entity>
 
       <!-- Enemies -->
-      <a-entity shadow="cast: true" sound="src:#fx_punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" id="Ghost01" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:#ghost_img">
+      <a-entity shadow="cast: true" sound="src:#fx-punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" id="Ghost01" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:#ghost-img">
 
 	    <!-- Bounding Box -->
 	    <a-box width="15" height="5" depth="3" position="0 0 0" static-body visible="false"></a-box>
 
 	    <!-- Punch Sound -->
-        <a-entity sound="src:#fx_punch"></a-entity>
+        <a-entity sound="src:#fx-punch"></a-entity>
 
       	<!-- Animation -->
       	<a-animation attribute="position" to="1.351 0.1 0" direction="alternate-reverse" repeat="indefinite" easing="linear" dur="1000"></a-animation>
