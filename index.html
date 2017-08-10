@@ -10,16 +10,15 @@
     <script src="js/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-    <script src="js/random-position.js"></script>
     <script src="js/aframe-firebase-component.min.js"></script>
   </head>
   <body class="a-body">
-    <a-scene debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr=""
-      firebase="apiKey: AIzaSyBvO8Woss2L0VtEq8DAa9rWTA3UC754BHg;
+    <a-scene debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr="">
+    <!-- firebase="apiKey: AIzaSyBvO8Woss2L0VtEq8DAa9rWTA3UC754BHg;
         authDomain: voxeldungeonvr.firebaseapp.com;
         databaseURL: https://voxeldungeonvr.firebaseio.com;
         storageBucket: voxeldungeonvr.appspot.com;
-        interval: 200">
+        interval: 200"-->
       <a-assets>
         <a-asset-item id="player-sword-obj" src="resources/player_sword.obj" preload="auto"></a-asset-item>
         <a-asset-item id="player-sword-mtl" src="resources/player_sword.mtl" preload="auto"></a-asset-item>
@@ -31,6 +30,8 @@
         <a-asset-item id="shop-mtl" src="resources/shop.mtl" preload="auto"></a-asset-item>
         <a-asset-item id="lamp-mtl" src="resources/lamp.mtl" preload="auto"></a-asset-item>
         <a-asset-item id="lamp-obj" src="resources/lamp.obj" preload="auto"></a-asset-item>
+        <a-asset-item id="armored-skeleton-mtl" src="resources/armored_skeleton.mtl" preload="auto"></a-asset-item>
+        <a-asset-item id="armored-skeleton-obj" src="resources/armored_skeleton.obj" preload="auto"></a-asset-item>
       	<img id="ghost-img" src="https://ucarecdn.com/f6bf9fe3-82b4-43ba-b5b6-a7e308b64c77/" crossorigin="anonymous">
       	<img id="wall-img" src="https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" crossorigin="anonymous">
         <img id="lamp-img" src="resources/lamp.png" crossorigin="anonymous">
@@ -67,13 +68,15 @@
       <a-entity id="blueTPSphere-13" mixin="tp-sphere" position="-18.063 2.884 -12.294"></a-entity>
       <a-entity id="blueTPSphere-14" mixin="tp-sphere" position="-18.02 2.884 22.737"></a-entity>
       <a-entity id="blueTPSphere-15" mixin="tp-sphere" position="-18.02 2.884 5.341"></a-entity>
+      <a-entity id="blueTPSphere-16" mixin="tp-sphere" position="-26.152 2.884 -5.423"></a-entity>
+      <a-entity id="blueTPSphere-17" mixin="tp-sphere" position="-18.109 2.884 -5.423"></a-entity>
+      <a-entity id="blueTPSphere-18" mixin="tp-sphere" position="-26.152 2.884 4.193"></a-entity>
+      <a-entity id="blueTPSphere-19" mixin="tp-sphere" position="-26.152 2.884 13.942"></a-entity>
 
       <!-- Walls -->
       <a-box id="wall-1" mixin="wall" width="15" height="5" depth="1" position="-0.215 2.5 10.025"></a-box>
       <a-box id="wall-2" mixin="wall" width="15" height="5" depth="1" position="-7.958 2.5 -9.76"></a-box>
-      <a-box id="wall-3" mixin="wall" width="15" height="5" depth="1" position="3.731 2.5 -7.673" rotation="0 90 0" geometry="width:5">
-      </a-box>
-      </a-box>
+      <a-box id="wall-3" mixin="wall" width="15" height="5" depth="1" position="3.731 2.5 -7.673" rotation="0 90 0" geometry="width:5"></a-box>
       <a-box id="wall-4" mixin="wall" width="15" height="5" depth="1" position="-0.949 2.5 -7.671" rotation="0 90 0" geometry="width:5"></a-box>
       <a-box id="wall-5" mixin="wall" width="7" height="5" depth="1" position="-3.967 2.5 -5.568"></a-box>
       <a-box id="wall-6" mixin="wall" width="4" height="5" depth="1" position="5.234 2.5 -5.56"></a-box>
@@ -100,8 +103,18 @@
       <!-- Floor. -->
       <a-entity id="floor" shadow="receive: true" static-body geometry="depth:100;height:0.2;width:100;" material="repeat:50 20;color:#fafafa;metalness:0.2;roughness:1;src:https://ucarecdn.com/8a2780f7-e076-4f8c-bd1d-40ae172508a9/"></a-entity>
 
+      <!-- Ceiling -->
+      <a-entity id="ceiling" shadow="receive:true" static-body="sphereRadius:NaN" geometry="depth:100;height:0.2;width:100" material="repeat:50 20;color:#fafafa;metalness:0.2;roughness:1;src:https://ucarecdn.com/8a2780f7-e076-4f8c-bd1d-40ae172508a9/" position="0 4.6 0"></a-entity>
+
       <!-- Fountain -->
-      <a-entity position="-4.173 0.763 -1.856" rotation="90 0 0" ocean="width:5;depth:5;density:5;amplitude:0.5;amplitudeVariance:0;opacity:0.8"></a-entity>
+      <a-entity position="-35.503 0 4.298">
+        <a-entity position="-4.503 0.5 0" id="fountain-border-1" static-body geometry="depth:10" material="color:grey"></a-entity>
+        <a-entity position="0.019 0.5 -4.517" id="fountain-border-2" static-body geometry="width:10" material="color:grey"></a-entity>
+        <a-entity position="0 0.5 4.493" id="fountain-border-3" static-body geometry="width:10" material="color:grey"></a-entity>
+        <a-entity position="4.514 0.5 -0.004" id="fountain-border-4" static-body geometry="depth:10" material="color:grey"></a-entity>
+        <a-entity position="0 0.3 0" id="fountain-water" static-body geometry="depth:8;height:0.8;width:8" material="opacity:0.6;color:#7AD2F7"></a-entity>
+        <!-- <a-entity position="0 0.8 0" id="fountain-effect" static-body rotation="90 0 0" material="opacity:0.6;color:#7AD2F7" ocean="width:8;depth:8;density:0.2;amplitudeVariance:0.05"></a-entity> -->
+      </a-entity>
 
       <!-- World Sun -->
       <a-entity light="color:#CCC;intensity:0.6;type:ambient" position="0 11.345 0"></a-entity>
@@ -147,28 +160,47 @@
         <a-entity mixin="torch-light"></a-entity>
         <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
+      <a-entity id="torch-11" mixin="torch" position="-26.149 3.567 4.171" static-body="sphereRadius:NaN">
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1" material=""></a-entity>
+      </a-entity>
+      <a-entity id="torch-12" mixin="torch" position="-44.347 3.567 4.171" static-body="sphereRadius:NaN">
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1" material=""></a-entity>
+      </a-entity>
+      <a-entity id="torch-13" mixin="torch" position="-35.97 3.567 -4.858" static-body="sphereRadius:NaN">
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1" material=""></a-entity>
+      </a-entity>
+      <a-entity id="torch-14" mixin="torch" position="-35.97 3.567 14.216" static-body="sphereRadius:NaN">
+        <a-entity mixin="torch-light"></a-entity>
+        <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1" material=""></a-entity>
+      </a-entity>
       <!-- END TORCHES -->
 
     <!-- Camera. -->
-    <a-entity camera id="player" firebase-broadcast="components: position, rotation" player="health: 200" sound="src:#bg-music; autoplay:true; loop:true; volume:0.05" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
+    <!-- firebase-broadcast="components: position, rotation" HEALTH, CAMERA, CURSOR -->
+    <!-- HEAD firebase-broadcast="componentsOnce: mixin; components: position, rotation"-->
+    <!-- firebase-broadcast="components: position, rotation, obj-model, scale" SWORD, SHIELD-->
+    <a-entity camera id="player"  player="health: 200" sound="src:#bg-music; autoplay:true; loop:true; volume:0.05" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
 
-    	<a-entity id="player-head" firebase-broadcast="componentsOnce: mixin; components: position, rotation" position="0 0 0" mixin="player-head-mixin"></a-entity>
+    	<a-entity id="player-head" position="0 0 0" mixin="player-head-mixin"></a-entity>
 
       <!-- HP Interface -->
-      <a-entity position="-0.553 -0.328 -0.725" firebase-broadcast="components: position, rotation" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
+      <a-entity position="-0.553 -0.328 -0.725" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
 
     	<!-- Cursor -->
-     	<a-entity cursor firebase-broadcast="components: position, rotation" position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
+     	<a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
 
       <!-- Player Sword-->
-      <a-entity id="player-sword" firebase-broadcast="components: position, rotation, obj-model, scale" position="0.416 -0.957 -0.463" shadow="cast: true" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5">
+      <a-entity id="player-sword" position="0.416 -0.957 -0.463" shadow="cast: true" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5">
           
         <!-- Sword Hit Rotation Animation -->
         <a-animation id="p-sword-rotation" attribute="rotation" to="0 90 -80" direction="alternate" repeat="1" begin="player-attack" easing="linear" dur="200"></a-animation>
       </a-entity>
 
         <!-- Player Shield -->
-      <a-entity position="-0.705 -1.703 -0.411" firebase-broadcast="components: position, rotation, obj-model, scale" shadow="cast: true" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0"></a-entity>
+      <a-entity position="-0.705 -1.703 -0.411" shadow="cast: true" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0"></a-entity>
 
     </a-entity>
 
@@ -189,7 +221,7 @@
       </a-entity>
 
       <!-- Enemies -->
-      <a-entity shadow="cast: true" sound="src:#fx-punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" id="Ghost01" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:#ghost-img">
+      <a-entity id="Ghost01" shadow="cast: true" sound="src:#fx-punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:#ghost-img">
 
 	    <!-- Bounding Box -->
 	    <a-box width="15" height="5" depth="3" position="0 0 0" static-body visible="false"></a-box>
@@ -204,11 +236,44 @@
 	    <a-entity position="2 10 10" id="1-ui">
 	    	<a-entity position="0 10 0" material="color: red" geometry="primitive:plane; width: 7; height: 3;" text="align:center;value:HP;width:50;color:#322342" id="text-health-1"></a-entity>
 
-	    	<a-entity position="-10 -2 0" material="color: lightgrey" geometry="primitive:plane; width: 7; height: 3;" attack-button="targetEntity: #Ghost01" text="align:center;value:Attack;width:50;color:#322342" id="text-attack-1"></a-entity>
+	    	<a-entity position="-10 -2 0" material="color: lightgrey" geometry="primitive:plane; width: 7; height: 3;" attack-button="targetEntity: #Ghost01" text="align:center;value:Attack;width:50;color:#322342"></a-entity>
 
-	      	<a-entity position="0 -2 0" material="color: lightgrey" geometry="primitive:plane; width: 7; height: 3;" text="align:center;value:Defend;width:50;color:#322342" id="text-defend-1"></a-entity>
+	      	<a-entity position="0 -2 0" material="color: lightgrey" geometry="primitive:plane; width: 7; height: 3;" text="align:center;value:Defend;width:50;color:#322342"></a-entity>
 
-	     	<a-entity position="10 -2 0" material="color: lightgrey" geometry="primitive:plane; width: 7; height: 3;" text="align:center;value:Evade;width:50;color:#322342" id="text-evade-1"></a-entity>
+	     	<a-entity position="10 -2 0" material="color: lightgrey" geometry="primitive:plane; width: 7; height: 3;" text="align:center;value:Evade;width:50;color:#322342"></a-entity>
 	    </a-entity>
-	  </a-entity>
+	   </a-entity>
+
+     <a-entity id="ArmSkel01" shadow="cast:true" sound="poolSize:5;src:resources/fx_punch.mp3" position="0.474 0 -15.52" scale="0.08 0.08 0.08" enemy="health:45;id:2" obj-model="mtl:resources/armored_skeleton.mtl;obj:resources/armored_skeleton.obj" material="">
+
+      <!-- Bounding Box -->
+      <a-box width="15" height="30" depth="15" position="0 15 7.413" static-body="sphereRadius:NaN" visible="false"></a-box>
+
+      <!-- Punch Sound -->
+        <a-entity sound="src:resources/fx_punch.mp3"></a-entity>
+
+      <!-- UI -->
+      <a-entity position="0.521 12.796 10.943" id="2-ui">
+        <a-entity position="0 15.074 0" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP 45;width:50" id="text-health-2"></a-entity>
+
+        <a-entity position="0 -1.422 0" material="color:lightgrey" geometry="primitive:plane;height:3;width:7" attack-button="targetEntity:#ArmSkel01" text="align:center;color:#322342;value:Attack;width:50"></a-entity>
+      </a-entity>
+     </a-entity>
+
+     <a-entity id="ArmSkel02" shadow="cast:true" sound="poolSize:5;src:resources/fx_punch.mp3" position="2.037 0 -15.52" scale="0.08 0.08 0.08" enemy="health:45;id:3" obj-model="mtl:resources/armored_skeleton.mtl;obj:resources/armored_skeleton.obj" material="">
+
+      <!-- Bounding Box -->
+      <a-box width="15" height="30" depth="15" position="0 15 7.413" static-body="sphereRadius:NaN" visible="false"></a-box>
+
+      <!-- Punch Sound -->
+        <a-entity sound="src:resources/fx_punch.mp3"></a-entity>
+
+      <!-- UI -->
+      <a-entity position="0.521 12.796 10.943" id="3-ui">
+        <a-entity position="0 15.074 0" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP 14;width:50" id="text-health-3"></a-entity>
+
+        <a-entity position="0 -1.422 0" material="color:lightgrey" geometry="primitive:plane;height:3;width:7" attack-button="targetEntity:#ArmSkel01" text="align:center;color:#322342;value:Attack;width:50"></a-entity>
+      </a-entity>
+     </a-entity>
+
     </a-scene>
