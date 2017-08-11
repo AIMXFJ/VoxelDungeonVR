@@ -254,7 +254,7 @@
 
       <!-- UI -->
       <a-entity position="0.521 12.796 10.943" id="2-ui">
-        <a-entity position="0 15.074 0" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP 45;width:50" id="text-health-2"></a-entity>
+        <a-entity position="0 15.074 0" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-2"></a-entity>
 
         <a-entity position="0 -1.422 0" material="color:lightgrey" geometry="primitive:plane;height:3;width:7" attack-button="targetEntity:#ArmSkel01" text="align:center;color:#322342;value:Attack;width:50"></a-entity>
       </a-entity>
@@ -263,16 +263,16 @@
      <a-entity id="ArmSkel02" sound="poolSize:5;src:resources/fx_punch.mp3" position="2.037 0 -15.52" scale="0.08 0.08 0.08" enemy="health:45;id:3" obj-model="mtl:resources/armored_skeleton.mtl;obj:resources/armored_skeleton.obj" material="">
 
       <!-- Bounding Box -->
-      <a-box width="15" height="30" depth="15" position="0 15 7.413" static-body="sphereRadius:NaN" visible="false"></a-box>
+      <a-box width="15" height="30" depth="15" position="0 15 7.413" static-body visible="false"></a-box>
 
       <!-- Punch Sound -->
         <a-entity sound="src:resources/fx_punch.mp3"></a-entity>
 
       <!-- UI -->
       <a-entity position="0.521 12.796 10.943" id="3-ui">
-        <a-entity position="0 15.074 0" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP 14;width:50" id="text-health-3"></a-entity>
+        <a-entity position="0 15.074 0" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-3"></a-entity>
 
-        <a-entity position="0 -1.422 0" material="color:lightgrey" geometry="primitive:plane;height:3;width:7" attack-button="targetEntity:#ArmSkel01" text="align:center;color:#322342;value:Attack;width:50"></a-entity>
+        <a-entity position="0 -1.422 0" material="color:lightgrey" geometry="primitive:plane;height:3;width:7" attack-button="targetEntity:#ArmSkel02" text="align:center;color:#322342;value:Attack;width:50"></a-entity>
       </a-entity>
      </a-entity>
 
