@@ -9,11 +9,11 @@
     <script src="js/aframe-physics-system.min.js"></script>
     <script src="js/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-    <script src="js/aframe-firebase-component.min.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="js/aframe-firebase-component.min.js"></script>-->
   </head>
   <body class="a-body">
-    <a-scene stats debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" auto-enter-vr="">
+    <a-scene stats debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="">
     <!-- firebase="apiKey: AIzaSyBvO8Woss2L0VtEq8DAa9rWTA3UC754BHg;
         authDomain: voxeldungeonvr.firebaseapp.com;
         databaseURL: https://voxeldungeonvr.firebaseio.com;
@@ -39,9 +39,9 @@
       	<audio id="fx-punch" src="resources/fx_punch.mp3" preload="auto"></audio>
       	<audio id="fx-teleport" src="resources/fx_teleport.mp3" preload="auto"></audio>
 
-      	<a-mixin id="torch" castShadow="true" static-body/>
-      	<a-mixin id="torch-light" light="angle:0;decay:0;intensity:2;type:point;color:#ff9328;distance:10;decay:1"/>
-      	<a-mixin id="wall" shadow="cast: true" color="grey" material="src:#wall-img;roughness:1;metalness:0.3" static-body/>
+      	<!--<a-mixin id="torch" static-body/>
+      	<a-mixin id="torch-light" light="angle:0;decay:0;intensity:2;type:point;color:#ff9328;distance:10;decay:1"/>-->
+      	<a-mixin id="wall" color="grey" material="src:#wall-img;roughness:1;metalness:0.3" static-body/>
       	<a-mixin id="tp-sphere" sound="src:#fx-teleport; poolSize:5; volume:0.2" static-movement geometry="primitive:sphere;radius:0.3" material="color:blue;roughness:1"/>
         <a-mixin id="player-head-mixin" geometry="primitive:sphere;radius:0.2" material="color:red;roughness:1"></a-mixin>
       </a-assets>
@@ -101,10 +101,10 @@
       <!-- END WALLS -->
 
       <!-- Floor. -->
-      <a-entity id="floor" shadow="receive: true" static-body geometry="depth:100;height:0.2;width:100;" material="repeat:50 20;color:#fafafa;metalness:0.2;roughness:1;src:https://ucarecdn.com/8a2780f7-e076-4f8c-bd1d-40ae172508a9/"></a-entity>
+      <a-entity id="floor" shadow="receive: true" static-body geometry="depth:100;height:0.2;width:100;" material="repeat:50 20;color:grey;metalness:0.2;roughness:1"></a-entity>
 
       <!-- Ceiling -->
-      <a-entity id="ceiling" shadow="receive:true" static-body="sphereRadius:NaN" geometry="depth:100;height:0.2;width:100" material="repeat:50 20;color:#fafafa;metalness:0.2;roughness:1;src:https://ucarecdn.com/8a2780f7-e076-4f8c-bd1d-40ae172508a9/" position="0 4.6 0"></a-entity>
+      <a-entity id="ceiling" shadow="receive:true" static-body geometry="depth:100;height:0.2;width:100" material="repeat:50 20;color:lightgrey;metalness:0.2;roughness:1" position="0 4.6 0"></a-entity>
 
       <!-- Fountain -->
       <a-entity position="-35.503 0 4.298">
@@ -117,10 +117,10 @@
       </a-entity>
 
       <!-- World Sun -->
-      <a-entity light="color:#CCC;intensity:0.6;type:ambient" position="0 11.345 0"></a-entity>
+      <a-entity light="color:white;intensity:1;type:ambient" position="0 11.345 0"></a-entity>
 
       <!-- Torches -->
-      <a-entity id="torch-1" mixin="torch" position="-0.334 3.567 2.083">
+      <!--<a-entity id="torch-1" mixin="torch" position="-0.334 3.567 2.083">
         <a-entity mixin="torch-light"></a-entity>
         <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1"></a-entity>
       </a-entity>
@@ -175,7 +175,7 @@
       <a-entity id="torch-14" mixin="torch" position="-35.97 3.567 14.216" static-body="sphereRadius:NaN">
         <a-entity mixin="torch-light"></a-entity>
         <a-entity obj-model="mtl:resources/lamp.mtl;obj:resources/lamp.obj" position="0.047 -2.996 -0.042" scale="0.1 0.1 0.1" material=""></a-entity>
-      </a-entity>
+      </a-entity>-->
       <!-- END TORCHES -->
 
     <!-- Camera. -->
@@ -193,14 +193,14 @@
      	<a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
 
       <!-- Player Sword-->
-      <a-entity id="player-sword" position="0.416 -0.957 -0.463" shadow="cast: true" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5">
+      <a-entity id="player-sword" position="0.416 -0.957 -0.463" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5">
           
         <!-- Sword Hit Rotation Animation -->
         <a-animation id="p-sword-rotation" attribute="rotation" to="0 90 -80" direction="alternate" repeat="1" begin="player-attack" easing="linear" dur="200"></a-animation>
       </a-entity>
 
         <!-- Player Shield -->
-      <a-entity position="-0.705 -1.703 -0.411" shadow="cast: true" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0"></a-entity>
+      <a-entity position="-0.705 -1.703 -0.411" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0"></a-entity>
 
     </a-entity>
 
@@ -221,7 +221,7 @@
       </a-entity>
 
       <!-- Enemies -->
-      <a-entity id="Ghost01" shadow="cast: true" sound="src:#fx-punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:#ghost-img">
+      <a-entity id="Ghost01" sound="src:#fx-punch; poolSize:5" position="1.351 0 0" scale="0.1 0.1 0.1" static-body="shape: box" enemy="health: 30; id: 1" obj-model="obj:resources/ghost.obj" material="src:#ghost-img">
 
 	    <!-- Bounding Box -->
 	    <a-box width="15" height="5" depth="3" position="0 0 0" static-body visible="false"></a-box>
@@ -244,7 +244,7 @@
 	    </a-entity>
 	   </a-entity>
 
-     <a-entity id="ArmSkel01" shadow="cast:true" sound="poolSize:5;src:resources/fx_punch.mp3" position="0.474 0 -15.52" scale="0.08 0.08 0.08" enemy="health:45;id:2" obj-model="mtl:resources/armored_skeleton.mtl;obj:resources/armored_skeleton.obj" material="">
+     <a-entity id="ArmSkel01" sound="poolSize:5;src:resources/fx_punch.mp3" position="0.474 0 -15.52" scale="0.08 0.08 0.08" enemy="health:45;id:2" obj-model="mtl:resources/armored_skeleton.mtl;obj:resources/armored_skeleton.obj" material="">
 
       <!-- Bounding Box -->
       <a-box width="15" height="30" depth="15" position="0 15 7.413" static-body="sphereRadius:NaN" visible="false"></a-box>
@@ -260,7 +260,7 @@
       </a-entity>
      </a-entity>
 
-     <a-entity id="ArmSkel02" shadow="cast:true" sound="poolSize:5;src:resources/fx_punch.mp3" position="2.037 0 -15.52" scale="0.08 0.08 0.08" enemy="health:45;id:3" obj-model="mtl:resources/armored_skeleton.mtl;obj:resources/armored_skeleton.obj" material="">
+     <a-entity id="ArmSkel02" sound="poolSize:5;src:resources/fx_punch.mp3" position="2.037 0 -15.52" scale="0.08 0.08 0.08" enemy="health:45;id:3" obj-model="mtl:resources/armored_skeleton.mtl;obj:resources/armored_skeleton.obj" material="">
 
       <!-- Bounding Box -->
       <a-box width="15" height="30" depth="15" position="0 15 7.413" static-body="sphereRadius:NaN" visible="false"></a-box>
