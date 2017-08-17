@@ -32,6 +32,10 @@
         <a-asset-item id="lamp-obj" src="resources/lamp.obj" preload="auto"></a-asset-item>
         <a-asset-item id="armored-skeleton-mtl" src="resources/armored_skeleton.mtl" preload="auto"></a-asset-item>
         <a-asset-item id="armored-skeleton-obj" src="resources/armored_skeleton.obj" preload="auto"></a-asset-item>
+        <a-asset-item id="skeleton-blocked-path-mtl" src="resources/skeleton_blocked_path.mtl" preload="auto"></a-asset-item>
+        <a-asset-item id="skeleton-blocked-path-obj" src="resources/skeleton_blocked_path.obj" preload="auto"></a-asset-item>
+        <a-asset-item id="level-door-mtl" src="resources/level_door.mtl" preload="auto"></a-asset-item>
+        <a-asset-item id="level-door-obj" src="resources/level_door.obj" preload="auto"></a-asset-item>
       	<img id="ghost-img" src="https://ucarecdn.com/f6bf9fe3-82b4-43ba-b5b6-a7e308b64c77/" crossorigin="anonymous">
       	<img id="wall-img" src="https://ucarecdn.com/3336cb05-b8f8-4836-b3f8-91b13e448d0c/" crossorigin="anonymous">
         <img id="lamp-img" src="resources/lamp.png" crossorigin="anonymous">
@@ -118,6 +122,12 @@
 
       <!-- World Sun -->
       <a-entity light="color:white;intensity:1;type:ambient" position="0 11.345 0"></a-entity>
+
+      <!-- Path Blockers -->
+      <a-entity position="1.251 0 -27.912" scale="0.1 0.1 0.1" obj-model="mtl:#skeleton-blocked-path-mtl;obj:#skeleton-blocked-path-obj" id="blocked-1" static-body></a-entity>
+
+      <!-- Level Door -->
+      <a-entity position="1.4 0.101 -28.743" scale="0.1 0.1 0.1" static-body obj-model="mtl:#level-door-mtl;obj:#level-door-obj" id="level-door-1"></a-entity>
 
       <!-- Torches -->
       <!--<a-entity id="torch-1" mixin="torch" position="-0.334 3.567 2.083">
