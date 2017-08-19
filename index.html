@@ -9,11 +9,17 @@
     <script src="js/aframe-physics-system.min.js"></script>
     <script src="js/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
-    <!--<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-    <script src="js/aframe-firebase-component.min.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="js/aframe-firebase-component.min.js"></script>
   </head>
   <body class="a-body">
-    <a-scene stats debug="" physics="debug: true" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="">
+    <!-- add "stats" to show info -->
+    <a-scene debug="" physics="debug: false" class="fullscreen" canvas="" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui=""
+    firebase="apiKey: AIzaSyBvO8Woss2L0VtEq8DAa9rWTA3UC754BHg;
+        authDomain: voxeldungeonvr.firebaseapp.com;
+        databaseURL: https://voxeldungeonvr.firebaseio.com;
+        storageBucket: voxeldungeonvr.appspot.com;
+        interval: 500">
     <!-- firebase="apiKey: AIzaSyBvO8Woss2L0VtEq8DAa9rWTA3UC754BHg;
         authDomain: voxeldungeonvr.firebaseapp.com;
         databaseURL: https://voxeldungeonvr.firebaseio.com;
@@ -192,25 +198,25 @@
     <!-- firebase-broadcast="components: position, rotation" HEALTH, CAMERA, CURSOR -->
     <!-- HEAD firebase-broadcast="componentsOnce: mixin; components: position, rotation"-->
     <!-- firebase-broadcast="components: position, rotation, obj-model, scale" SWORD, SHIELD-->
-    <a-entity camera id="player"  player="health: 200" sound="src:#bg-music; autoplay:true; loop:true; volume:0.05" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
+    <a-entity camera id="player" firebase-broadcast="components: position, rotation" player="health: 200" sound="src:#bg-music; autoplay:true; loop:true; volume:0.05" userHeight="1.6" universal-controls kinematic-body="radius:0.8" position="1.464 1.572 2.571">
 
-    	<a-entity id="player-head" position="0 0 0" mixin="player-head-mixin"></a-entity>
+    	<a-entity id="player-head" firebase-broadcast="componentsOnce: mixin; components: position, rotation" position="0 0 0" mixin="player-head-mixin"></a-entity>
 
       <!-- HP Interface -->
-      <a-entity position="-0.553 -0.328 -0.725" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
+      <a-entity firebase-broadcast="components: position, rotation" position="-0.553 -0.328 -0.725" material="color:red" geometry="primitive:plane;height:3;width:7" text="align:center;color:#322342;value:HP;width:50" id="text-health-player" scale="0.05 0.05 0.05" rotation="0 35 0"></a-entity>
 
     	<!-- Cursor -->
-     	<a-entity cursor position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
+     	<a-entity cursor firebase-broadcast="components: position, rotation" position="0 0 -0.5" geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.016" material="opacity:0.5;shader:flat;transparent:true;color:#ff9" scale="0.8 0.8 0.8" raycaster ></a-entity>
 
       <!-- Player Sword-->
-      <a-entity id="player-sword" position="0.416 -0.957 -0.463" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5">
+      <a-entity id="player-sword" firebase-broadcast="components: position, rotation, obj-model, scale" position="0.416 -0.957 -0.463" obj-model="mtl:#player-sword-mtl;obj:#player-sword-obj" id="player-sword" scale="0.05 0.05 0.05" rotation="0 90 -5">
           
         <!-- Sword Hit Rotation Animation -->
         <a-animation id="p-sword-rotation" attribute="rotation" to="0 90 -80" direction="alternate" repeat="1" begin="player-attack" easing="linear" dur="200"></a-animation>
       </a-entity>
 
         <!-- Player Shield -->
-      <a-entity position="-0.705 -1.703 -0.411" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0"></a-entity>
+      <a-entity position="-0.705 -1.703 -0.411" firebase-broadcast="components: position, rotation, obj-model, scale" scale="0.1 0.1 0.1" id="player-shield" obj-model="mtl:#player-shield-mtl;obj:#player-shield-obj" rotation="0 -90 0"></a-entity>
 
     </a-entity>
 
